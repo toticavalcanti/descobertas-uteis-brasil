@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-papel font-sans text-tinta antialiased;
+    font-feature-settings: "ss01";
+  }
+  h1, h2, h3 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  ::selection { background: #f5b301; color: #142221; }
+  :focus-visible {
+    outline: 3px solid #f5b301;
+    outline-offset: 3px;
+    border-radius: 10px;
+  }
+}
+
+@layer components {
+  .container-page { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+  .section-title { @apply font-display text-[2.1rem] font-bold leading-[1.05] tracking-[-0.03em] sm:text-5xl; }
+  .section-lead { @apply mt-4 max-w-[36rem] text-lg leading-relaxed text-tinta/70; }
+  .footer-link { @apply transition-colors hover:text-ipe; }
+  .skip-link {
+    @apply fixed left-4 top-3 z-50 -translate-y-24 rounded-full bg-ipe px-4 py-2 font-semibold text-tinta transition-transform focus:translate-y-0;
+  }
+  .steam-wisp {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: steam 3.3s ease-in-out infinite;
+  }
+}
+
+@keyframes steam {
+  0% { opacity: 0; transform: translateY(14px) scaleY(0.75); }
+  30% { opacity: 0.95; }
+  100% { opacity: 0; transform: translateY(-22px) scaleY(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .steam-wisp { animation: none; opacity: 0.55; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
