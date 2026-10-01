@@ -1,134 +1,318 @@
-import type { Product, UpcomingDiscovery } from "./types";
+import type { Product } from "./types";
 
 /**
- * Catálogo do hub. Para publicar um novo produto, adicione um objeto em `products`
- * e remova o item correspondente de `upcoming`. A página /produtos/[slug] é gerada sozinha.
+ * =====================================================================
+ *  CATÁLOGO DAS DESCOBERTAS
+ *  Fonte única de conteúdo do hub (/) e das landing pages (/descobertas/[slug]).
  *
- * ⚠️ Valores marcados com CONFIRMAR são exemplos: troque pelos dados reais do fornecedor
- * antes de publicar (Código de Defesa do Consumidor, art. 31).
+ *  LINKS DA KAIROSS: `affiliateUrl` de cada produto abaixo.
+ *  Todos os botões de compra da página daquele produto usam esse link.
+ *
+ *  Regra de conteúdo: só informações confirmadas. Nada de potência, autonomia,
+ *  avaliações, descontos ou números que não tenham sido fornecidos.
+ * =====================================================================
  */
 export const products: Product[] = [
+  // ─────────────────────────────────────────────── DESCOBERTA Nº 01
   {
-    slug: "ferro-a-vapor-aj-120",
+    slug: "mini-mop-portatil",
     number: 1,
-    name: "Ferro de Passar a Vapor Portátil AJ-120",
-    shortName: "Ferro a vapor AJ-120",
-    model: "AJ-120",
-    category: "Cuidado com roupas",
-    tagline: "Desamassa a roupa no cabide, em qualquer lugar.",
-    headline: "Roupa lisa sem tirar a tábua do armário.",
-    subheadline:
-      "O ferro a vapor portátil AJ-120 desamassa camisa, vestido e calça direto no cabide. Liga, aquece rápido e cabe na mala de mão.",
+    name: "Mini Mop Portátil Retrátil com Auto-Torção",
+    shortName: "Mini Mop Retrátil",
+    category: "Limpeza da casa",
+    imageFolder: "mini-mop",
+    imageAlt: "Mini Mop Portátil Retrátil com Auto-Torção",
+
+    affiliateUrl: "https://pay.kaiross.com.br/KOFNWn7oB18H", // checkout Kaiross do Mini Mop
+
+    youtubeId: "5qhiD96GCIA",
+    hub: { benefit: "Retrátil e com auto-torção, para as pequenas limpezas do dia a dia." },
     seo: {
-      title: "Ferro de Passar a Vapor Portátil AJ-120",
+      title: "Mini Mop Portátil Retrátil com Auto-Torção",
       description:
-        "Ferro a vapor portátil AJ-120: desamassa roupas no cabide, sem tábua. Compacto, leve e pronto em segundos. Veja o vídeo em uso, medidas e características.",
+        "Mini mop portátil e retrátil, com sistema de auto-torção, para pequenas limpezas do dia a dia. Compacto e fácil de guardar. Veja o vídeo e conheça o produto.",
     },
-    price: {
-      current: 89.9, // CONFIRMAR
-      previous: 129.9, // CONFIRMAR
-      installments: { count: 3, value: 29.97, interestFree: true }, // CONFIRMAR
+    theme: "vapor",
+    hero: {
+      headline: "Derramou alguma coisa no chão de novo?",
+      subheadline: "Um mini mop retrátil, com auto-torção, para as pequenas limpezas do dia a dia.",
     },
-    checkoutUrl: null, // ex.: "https://loja-parceira.com.br/produto/aj-120"
-    // image: { src: "/produtos/ferro-a-vapor-aj-120/produto.png", alt: "Ferro a vapor portátil AJ-120", width: 900, height: 1125 },
+    problem: {
+      title: "Nem toda limpeza precisa virar uma operação.",
+      lead: "Nem toda limpeza precisa virar uma operação com balde, pano e um monte de coisas espalhadas pela casa.",
+      pains: [
+        "Café, suco ou água derramados no chão da cozinha.",
+        "Sujeirinhas nos cantos que um mop grande não alcança direito.",
+        "Pegar balde, pano e rodo para limpar uma área pequena.",
+      ],
+      bridge: "E se as pequenas limpezas fossem pequenas de verdade?",
+    },
+    solution: {
+      title: "Conheça o mini mop retrátil.",
+      paragraphs: [
+        "O Mini Mop Portátil Retrátil foi pensado para facilitar aquelas pequenas limpezas do dia a dia.",
+        "Seu formato compacto e o sistema de auto-torção tornam o uso mais prático.",
+      ],
+    },
+    features: [
+      "Portátil",
+      "Retrátil",
+      "Compacto",
+      "Sistema de auto-torção",
+      "Fácil de guardar",
+      "Indicado para pequenas limpezas",
+      "Pode ser usado em diferentes ambientes",
+    ],
     video: {
-      src: "/produtos/ferro-a-vapor-aj-120/video-ugc.mp4",
-      poster: "/produtos/ferro-a-vapor-aj-120/video-poster.jpg",
+      title: "Veja o mini mop em uso.",
+      lead: "Antes de decidir, assista ao vídeo e veja como ele funciona na prática.",
     },
-    highlights: ["Passa no cabide", "Cabe na mala", "Vertical ou na mesa"],
     benefits: [
-      {
-        icon: "hanger",
-        title: "Desamassa no cabide",
-        text: "Pendure a peça e passe o vapor de cima para baixo. Sem tábua, sem mesa, sem montar nada antes de sair.",
-      },
-      {
-        icon: "bolt",
-        title: "Pronto em segundos",
-        text: "Aquece rápido para aquela camisa que você lembrou de passar na hora de sair.",
-      },
-      {
-        icon: "suitcase",
-        title: "Vai para qualquer lugar",
-        text: "Compacto e leve. Cabe na mala de mão, na gaveta do hotel ou no armário do trabalho.",
-      },
-      {
-        icon: "feather",
-        title: "Gentil com tecidos delicados",
-        text: "O vapor relaxa as fibras sem pressionar, o que ajuda em seda, viscose e malhas que marcam com ferro comum.",
-      },
-      {
-        icon: "sparkle",
-        title: "Refresca entre lavagens",
-        text: "Dá vida nova a blazers, cortinas e roupas que ficaram muito tempo guardadas.",
-      },
+      { icon: "collapse", title: "Retrátil", text: "Recolhe para ocupar menos espaço quando você termina." },
+      { icon: "twist", title: "Auto-torção", text: "Sistema pensado para deixar o uso mais prático." },
+      { icon: "box", title: "Compacto e fácil de guardar", text: "Cabe em armários e cantinhos sem atrapalhar." },
+      { icon: "corner", title: "Cantos e áreas menores", text: "Ajuda a alcançar os lugares onde um mop grande não chega bem." },
+      { icon: "drop", title: "Pequenas limpezas", text: "Para o que derramou ou sujou, sem montar uma operação." },
+      { icon: "home", title: "Diferentes ambientes", text: "Pode ser usado na cozinha, no banheiro e em outros cômodos." },
     ],
-    steps: [
-      { title: "Encha o reservatório", text: "Solte o tanque, coloque água filtrada e encaixe de volta." },
-      { title: "Ligue e aguarde a luz", text: "Conecte na tomada. Quando a luz indicar, o vapor está pronto." },
-      { title: "Passe com a peça pendurada", text: "Estique o tecido com uma mão e deslize o ferro de cima para baixo." },
-    ],
-    comparison: [
-      { label: "Precisa de tábua", common: "Sim", product: "Não" },
-      { label: "Para começar", common: "Montar tábua e esperar", product: "Ligar e usar" },
-      { label: "Levar em viagem", common: "Pesado e grande", product: "Cabe na mala de mão" },
-      { label: "Tecidos delicados", common: "Pode marcar ou brilhar", product: "Vapor sem pressão" },
-    ],
-    videoNotes: [
-      "O vapor começa a sair logo depois da luz acender.",
-      "A camisa é passada pendurada, sem tábua.",
-      "O tamanho real do ferro na mão de uma pessoa.",
-    ],
-    specs: [
-      { label: "Modelo", value: "AJ-120" },
-      { label: "Tipo", value: "Ferro a vapor portátil (vertical e horizontal)" },
-      { label: "Potência", value: "1000 W" }, // CONFIRMAR
-      { label: "Voltagem", value: "127 V ou 220 V (escolha na compra)" }, // CONFIRMAR
-      { label: "Reservatório", value: "Removível, cerca de 100 ml" }, // CONFIRMAR
-      { label: "Aquecimento", value: "Cerca de 30 segundos" }, // CONFIRMAR
-      { label: "Peso", value: "Cerca de 600 g" }, // CONFIRMAR
-      { label: "Cabo", value: "1,8 m" }, // CONFIRMAR
-    ],
-    dimensions: { heightCm: 25, widthCm: 11, depthCm: 9 }, // CONFIRMAR
-    inBox: ["1 ferro a vapor AJ-120", "1 reservatório de água removível", "Manual de uso"], // CONFIRMAR
-    limitations: [
-      "Vincos muito marcados em linho grosso ou jeans pesado pedem mais passadas, ou o ferro de base.",
-      "O reservatório é pequeno de propósito: ótimo para algumas peças, não para a roupa da semana inteira.",
+    uses: [
+      { icon: "drop", title: "Na cozinha", text: "Para algo que caiu ou derramou durante o preparo." },
+      { icon: "home", title: "No banheiro", text: "Para limpar uma área pequena sem tirar tudo do lugar." },
+      { icon: "box", title: "Em apartamentos", text: "Retrátil e compacto, guarda em pouco espaço." },
+      { icon: "corner", title: "Nos cantinhos", text: "Para as áreas menores que pedem um mop mais compacto." },
     ],
     faq: [
       {
-        question: "Serve para qualquer tecido?",
+        question: "Como funciona a auto-torção?",
         answer:
-          "Funciona bem em algodão, viscose, poliéster, seda e malhas. Em tecidos muito sensíveis, mantenha alguns centímetros de distância e teste antes numa parte escondida.",
+          "O mini mop tem um sistema de auto-torção pensado para deixar o uso mais prático. No vídeo desta página você vê como ele funciona.",
       },
       {
-        question: "Posso usar água da torneira?",
-        answer:
-          "Recomendamos água filtrada. Ela reduz o acúmulo de calcário e ajuda o vapor a sair uniforme por mais tempo.",
+        question: "Ele ocupa muito espaço?",
+        answer: "Ele é compacto e retrátil, o que facilita guardar em armários, áreas de serviço e cantinhos.",
       },
       {
-        question: "Qual é a voltagem?",
+        question: "Serve para limpar a casa inteira?",
         answer:
-          "O AJ-120 é vendido em 127 V e 220 V. Confira a voltagem da sua tomada antes de finalizar a compra.",
-      },
-      {
-        question: "Onde eu finalizo a compra?",
-        answer:
-          "No site do nosso parceiro de venda. Ao tocar em Comprar agora, você é levado para lá, e o pagamento e a entrega são feitos por ele.",
-      },
-      {
-        question: "E se eu me arrepender?",
-        answer:
-          "Compras feitas pela internet têm 7 dias para desistência, pelo Código de Defesa do Consumidor. Se precisar de ajuda com isso, escreva para a gente.",
+          "Ele foi pensado para as pequenas limpezas do dia a dia. Para limpar áreas grandes de uma vez, um mop maior pode ser mais adequado.",
       },
     ],
+    finalCta: {
+      title: "Pequenas limpezas, sem montar uma operação.",
+      text: "Conheça o mini mop retrátil e confira preço, pagamento e envio na Kaiross.",
+    },
+  },
+
+  // ─────────────────────────────────────────────── DESCOBERTA Nº 02
+  {
+    slug: "mini-aspirador-automotivo-aj-s17",
+    number: 2,
+    name: "Mini Aspirador Automotivo Portátil AJ-S17",
+    shortName: "Mini Aspirador AJ-S17",
+    model: "AJ-S17",
+    category: "Carro",
+    imageFolder: "mini-aspirador-aj-s17",
+    imageAlt: "Mini Aspirador Automotivo Portátil AJ-S17",
+
+    affiliateUrl: "https://pay.kaiross.com.br/e4glCxgH6YTG", // checkout Kaiross do Mini Aspirador AJ-S17
+
+    youtubeId: "ivX0A_QpuoM",
+    hub: { benefit: "Recarregável e sem fio, para limpezas rápidas no interior do carro." },
+    seo: {
+      title: "Mini Aspirador Automotivo Portátil AJ-S17",
+      description:
+        "Mini aspirador automotivo AJ-S17: compacto, recarregável e sem fio durante o uso, com acessórios para limpar o interior do carro. Veja o vídeo e conheça o produto.",
+    },
+    theme: "nevoa",
+    hero: {
+      headline: "Migalha e poeira acumulando no carro?",
+      subheadline: "Um mini aspirador recarregável e sem fio para as limpezas rápidas do dia a dia.",
+    },
+    problem: {
+      title: "A sujeira do carro vai se acumulando aos poucos.",
+      lead: "Sabe aquela poeira, migalha ou sujeirinha que vai se acumulando nos cantos do carro?",
+      pains: [
+        "Migalhas no banco depois daquele lanche rápido.",
+        "Poeira se juntando nos cantinhos e no console.",
+        "Tirar um aspirador grande do lugar toda vez dá preguiça.",
+      ],
+      bridge: "E se a limpeza rápida coubesse no porta-luvas da rotina?",
+    },
+    solution: {
+      title: "Conheça o AJ-S17.",
+      paragraphs: [
+        "O AJ-S17 é compacto e portátil, pensado para facilitar a limpeza do interior do veículo sem precisar recorrer a um aspirador grande toda vez.",
+        "Ele é recarregável e funciona sem fio durante o uso, e acompanha acessórios que ajudam a alcançar as áreas menores.",
+      ],
+    },
+    features: [
+      "Modelo AJ-S17",
+      "Mini aspirador automotivo portátil",
+      "Compacto",
+      "Recarregável",
+      "Sem fio durante o uso",
+      "Acompanha acessórios",
+      "Indicado para limpeza do interior do veículo",
+    ],
+    video: {
+      title: "Veja o AJ-S17 em uso.",
+      lead: "Antes de decidir, assista ao vídeo e veja como ele funciona dentro de um carro de verdade.",
+    },
+    benefits: [
+      { icon: "box", title: "Compacto", text: "Pequeno o bastante para ficar à mão quando você precisar." },
+      { icon: "battery", title: "Recarregável e sem fio", text: "Sem cabo atrapalhando durante o uso." },
+      { icon: "hand", title: "Fácil de manusear", text: "Portátil, para usar com uma mão dentro do carro." },
+      { icon: "sparkle", title: "Poeira e migalhas", text: "Pensado para a sujeira do dia a dia no interior do veículo." },
+      { icon: "corner", title: "Áreas menores", text: "Os acessórios ajudam a alcançar cantos e espaços estreitos." },
+      { icon: "clock", title: "Limpezas rápidas", text: "Para dar aquela geral sem transformar isso em programa." },
+    ],
+    uses: [
+      { icon: "car", title: "Depois do lanche", text: "Para as migalhas que ficaram no banco ou no tapete." },
+      { icon: "corner", title: "Cantinhos e console", text: "Onde a poeira se acumula e a mão não alcança bem." },
+      { icon: "clock", title: "Antes de dar uma carona", text: "Uma passada rápida antes de alguém entrar no carro." },
+      { icon: "sparkle", title: "Entre uma lavagem e outra", text: "Para manter o interior em ordem no dia a dia." },
+    ],
+    faq: [
+      {
+        question: "Ele precisa ficar ligado na tomada?",
+        answer: "Não durante o uso. O AJ-S17 é recarregável e funciona sem fio: você carrega e depois usa livremente no carro.",
+      },
+      {
+        question: "Vem com acessórios?",
+        answer:
+          "Sim. Ele acompanha acessórios que ajudam na limpeza de áreas menores. A lista completa está na página do produto na Kaiross.",
+      },
+      {
+        question: "Serve para uma limpeza pesada?",
+        answer:
+          "Ele foi pensado para limpezas rápidas do interior do carro, como poeira e migalhas. Para uma limpeza completa e pesada, um aspirador maior pode ser mais adequado.",
+      },
+    ],
+    finalCta: {
+      title: "Limpeza rápida, sem tirar o aspirador grande do lugar.",
+      text: "Conheça o AJ-S17 e confira preço, pagamento e envio na Kaiross.",
+    },
+  },
+
+  // ─────────────────────────────────────────────── DESCOBERTA Nº 03
+  {
+    slug: "ferro-portatil-aj-120",
+    number: 3,
+    name: "Ferro de Passar a Vapor Portátil AJ-120",
+    shortName: "Ferro Portátil AJ-120",
+    model: "AJ-120",
+    category: "Cuidado com roupas",
+    imageFolder: "ferro-a-vapor-aj-120",
+    imageAlt: "Ferro de Passar a Vapor Portátil AJ-120",
+
+    affiliateUrl: "https://pay.kaiross.com.br/8kNZPPkTYJxb", // checkout Kaiross do Ferro AJ-120
+
+    youtubeId: "pWopIaUyiBk",
+    hub: { benefit: "Compacto e com vapor, para retoques rápidos nas roupas do dia a dia." },
+    seo: {
+      title: "Ferro de Passar a Vapor Portátil AJ-120",
+      description:
+        "Ferro de passar a vapor portátil AJ-120: compacto, leve e com função de vapor para retoques rápidos nas roupas. Acompanha copo medidor. Veja o vídeo e conheça o produto.",
+    },
+    theme: "petroleo",
+    hero: {
+      headline: "Roupa amassada bem na hora de sair?",
+      subheadline: "Uma solução compacta para aqueles retoques rápidos do dia a dia.",
+    },
+    problem: {
+      title: "Uma peça amassada não deveria virar uma tarefa.",
+      lead: "Tem roupa amassada e não quer montar toda a estrutura para passar?",
+      pains: [
+        "Você lembra da camisa amassada só na hora de sair.",
+        "Montar tábua e ferro grande para uma peça só parece exagero.",
+        "Na viagem, a roupa sai da mala marcada.",
+      ],
+      bridge: "E se o retoque coubesse na palma da mão?",
+    },
+    solution: {
+      title: "Conheça o AJ-120.",
+      paragraphs: [
+        "O AJ-120 é uma opção compacta e prática para aqueles momentos em que você quer deixar uma peça mais lisinha rapidamente.",
+        "Seu formato portátil facilita o manuseio e o uso de vapor ajuda nos retoques das roupas.",
+      ],
+    },
+    features: [
+      "Modelo AJ-120",
+      "Ferro de passar a vapor portátil",
+      "Compacto",
+      "Leve",
+      "Design ergonômico",
+      "Função de vapor",
+      "Copo medidor incluso",
+    ],
+    measures: [
+      { label: "Altura da base", value: "110 mm" },
+      { label: "Altura total com alça", value: "112 mm" },
+      { label: "Largura da base", value: "80 mm" },
+    ],
+    video: {
+      title: "Veja o AJ-120 em uso.",
+      lead: "Antes de decidir, assista ao vídeo e veja o tamanho real dele e como é usar no dia a dia.",
+    },
+    benefits: [
+      { icon: "box", title: "Compacto", text: "Ocupa pouco espaço na gaveta, no armário ou na mala." },
+      { icon: "hand", title: "Leve e ergonômico", text: "Formato pensado para facilitar o manuseio." },
+      { icon: "drop", title: "Função de vapor", text: "O vapor ajuda nos retoques das roupas." },
+      { icon: "clock", title: "Retoques rápidos", text: "Para deixar uma peça mais lisinha sem montar estrutura." },
+      { icon: "suitcase", title: "Fácil de transportar", text: "Útil em viagens e para levar aonde precisar." },
+      { icon: "cup", title: "Copo medidor incluso", text: "Vem junto para facilitar o abastecimento de água." },
+    ],
+    uses: [
+      { icon: "clock", title: "Antes de sair de casa", text: "Aquele retoque na camisa ou na blusa minutos antes do compromisso." },
+      { icon: "suitcase", title: "Em viagens", text: "Na mala, para as roupas que amassaram no caminho." },
+      { icon: "home", title: "Em espaços pequenos", text: "Para quem não tem onde deixar uma tábua montada." },
+      { icon: "hanger", title: "No dia a dia", text: "Para as peças que só precisam de um retoque rápido." },
+    ],
+    faq: [
+      {
+        question: "O que vem junto com o ferro?",
+        answer: "O AJ-120 acompanha um copo medidor, que facilita colocar água para usar o vapor.",
+      },
+      {
+        question: "Quais são as medidas?",
+        answer: "A base tem 110 mm de altura e 80 mm de largura. A altura total, com a alça, é de 112 mm.",
+      },
+      {
+        question: "Ele substitui um ferro de passar comum?",
+        answer:
+          "Ele foi pensado para retoques rápidos e para levar com você. Para passar muitas roupas de uma vez, um ferro comum pode ser mais adequado.",
+      },
+    ],
+    finalCta: {
+      title: "Retoque rápido, sem montar estrutura.",
+      text: "Conheça o AJ-120 e confira preço, pagamento e envio na Kaiross.",
+    },
   },
 ];
 
-export const upcoming: UpcomingDiscovery[] = [
-  { number: 2, category: "Cozinha", note: "Em avaliação. Chega quando passar nos nossos critérios." },
-  { number: 3, category: "Organização", note: "Em avaliação. Chega quando passar nos nossos critérios." },
+/** Perguntas comuns a todas as landing pages. */
+export const commonFaq = [
+  {
+    question: "Onde eu finalizo a compra?",
+    answer:
+      "Ao tocar em Quero conhecer o produto, você vai para a página do produto na Kaiross. Lá estão preço, formas de pagamento e envio.",
+  },
+  {
+    question: "E se eu me arrepender?",
+    answer:
+      "Compras feitas pela internet têm 7 dias para desistência, pelo Código de Defesa do Consumidor. Se precisar de ajuda, escreva para a gente.",
+  },
 ];
 
 export const getProduct = (slug: string) => products.find((p) => p.slug === slug);
-export const productPath = (p: Pick<Product, "slug">) => `/produtos/${p.slug}`;
+export const productPath = (p: Pick<Product, "slug">) => `/descobertas/${p.slug}`;
+export const shortUrl = (youtubeId: string) => `https://www.youtube.com/shorts/${youtubeId}`;
+/**
+ * Thumbnails oficiais do Short, da maior para a menor resolução.
+ * O componente tenta em ordem e usa a primeira que existir.
+ */
+export const thumbUrls = (youtubeId: string) => [
+  `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`, // 1280×720
+  `https://i.ytimg.com/vi/${youtubeId}/sddefault.jpg`, // 640×480
+  `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`, // 480×360 (último recurso)
+];

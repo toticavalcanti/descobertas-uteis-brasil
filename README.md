@@ -1,6 +1,6 @@
 # Descobertas Úteis Brasil
 
-Hub de produtos em Next.js 15 + TypeScript + Tailwind CSS. Sem banco de dados: todo o conteúdo fica em `lib/products.ts`.
+Hub de produtos em Next.js 15 + TypeScript + Tailwind CSS. Sem banco de dados. A vitrine da home fica em `lib/discoveries.ts`; páginas completas de produto ficam em `lib/products.ts`.
 
 ## Rodar
 
@@ -14,27 +14,36 @@ npm run dev                  # http://localhost:3000
 
 ```
 app/
-  layout.tsx                 fontes, SEO global, header e rodapé
-  page.tsx                   hub (varal de descobertas, lista, critérios, contato)
-  produtos/[slug]/page.tsx   landing de cada produto (gerada a partir dos dados)
-  sitemap.ts, robots.ts, icon.svg, not-found.tsx
+  page.tsx                       hub (/)
+  descobertas/[slug]/page.tsx    landing pages de pré-venda
+  layout.tsx, sitemap.ts, robots.ts, not-found.tsx, icon.svg
 components/
-  brand/     Logo, HangTag (etiqueta pendurada, assinatura da marca)
-  art/       ilustração do produto usada enquanto não há foto
-  layout/    Header, Footer
-  home/      seções do hub
-  product/   seções da landing (hero, vídeo, benefícios, medidas, confiança, FAQ, CTA, barra fixa)
+  home/      hub: HubHero, Discoveries, DiscoveryCard, HowWeChoose, ContactBand, ShortThumbnail
+  landing/   seções da pré-venda: LandingHero, ProblemSection, SolutionSection, VideoSection,
+             YoutubeShort, BenefitsSection, Gallery(Section), UsesSection, SummaryCta,
+             FaqSection, FinalCta, StickyCta, CtaButton, ProductPhoto, LandingJsonLd
+  brand/, layout/, ui/
 lib/
-  products.ts  catálogo  ·  site.ts  marca e contato  ·  types.ts  tipos
+  products.ts       conteúdo dos 3 produtos + links da Kaiross (affiliateUrl)
+  productImages.ts  lê as fotos de public/produtos/<pasta> no build
 ```
 
-## Antes de publicar
+## Links da Kaiross
 
-1. **Link de compra**: em `lib/products.ts`, troque `checkoutUrl: null` pelo link do parceiro. Todos os botões passam a abrir esse link (com `rel="nofollow sponsored"`). Enquanto for `null`, o botão mostra um aviso com o e-mail de contato.
-2. **Dados técnicos e preço**: os valores marcados com `CONFIRMAR` são exemplos. Substitua pelos dados reais do fornecedor.
-3. **Vídeo UGC**: coloque `video-ugc.mp4` (vertical, 9:16, até ~8 MB) e `video-poster.jpg` em `public/produtos/ferro-a-vapor-aj-120/`. Sem o arquivo, a página mostra a ilustração no lugar.
-4. **Foto do produto** (opcional): salve um PNG com fundo transparente na mesma pasta e descomente o campo `image`. A foto substitui a ilustração em todo o site e entra no Open Graph e no JSON-LD.
+Em `lib/products.ts`, cada produto tem a linha:
 
-## Adicionar um produto
+```ts
+affiliateUrl: null, // ← COLE AQUI o link de afiliado da Kaiross ...
+```
 
-Copie o objeto do AJ-120 em `products`, mude `slug`, `number` e o conteúdo, e remova o item equivalente de `upcoming`. A página `/produtos/<slug>`, o card no hub, o rodapé e o sitemap são atualizados sozinhos. Para usar uma ilustração própria, registre-a em `components/art/ProductArt.tsx`; com foto, não precisa.
+Troque `null` pelo link entre aspas, por exemplo `affiliateUrl: "https://..."`. Os seis botões da página daquele produto (hero, vídeo, resumo, CTA final e barra fixa do celular) passam a usar o link. Cada botão tem `data-posicao` para medir cliques.
+
+## Fotos
+
+As fotos são lidas automaticamente de `public/produtos/<pasta>` (webp, png, jpg ou avif), em ordem de nome, e distribuídas assim: 1ª no hero e no card do hub, 2ª na seção Solução, 3ª em Benefícios, 4ª no Resumo, e todas na galeria. Para escolher manualmente, preencha `imageRoles` no produto:
+
+```ts
+imageRoles: { hero: "arquivo.webp", solution: "...", benefits: "...", summary: "..." },
+```
+
+As fotos nunca são cortadas nem esticadas (`object-contain`).

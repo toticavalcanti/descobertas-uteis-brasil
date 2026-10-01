@@ -11,7 +11,7 @@ const body = Figtree({ subsets: ["latin"], variable: "--font-body", display: "sw
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name}: produtos úteis escolhidos com cuidado`,
+    default: `${site.name}: coisas pequenas que resolvem o dia`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -50,6 +50,9 @@ const orgJsonLd = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={`${display.variable} ${body.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://i.ytimg.com" />
+      </head>
       <body>
         <a href="#conteudo" className="skip-link">Pular para o conteúdo</a>
         <Header />

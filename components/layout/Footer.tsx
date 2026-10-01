@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/brand/Logo";
-import { products, productPath } from "@/lib/products";
+import { productPath, products } from "@/lib/products";
 import { site } from "@/lib/site";
 
 export default function Footer() {
@@ -21,7 +21,6 @@ export default function Footer() {
               <Link className="footer-link" href={productPath(p)}>{p.shortName}</Link>
             </li>
           ))}
-          <li className="text-vapor/50">Mais em breve</li>
         </FooterCol>
 
         <FooterCol title="A marca">
@@ -41,7 +40,7 @@ export default function Footer() {
         <div className="container-page flex flex-col gap-3 py-6 text-[0.82rem] text-vapor/55 md:flex-row md:items-center md:justify-between">
           <p>© {year} {site.name}. Todos os direitos reservados.</p>
           <p className="max-w-xl md:text-right">
-            As compras são finalizadas no site de parceiros de venda. Preços e condições podem mudar sem aviso; confira na página do parceiro.
+            As compras são finalizadas na Kaiross. Preços e condições podem mudar sem aviso; confira na página do parceiro.
           </p>
         </div>
       </div>

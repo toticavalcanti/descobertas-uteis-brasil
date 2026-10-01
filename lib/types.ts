@@ -1,43 +1,41 @@
 import type { IconName } from "@/components/ui/Icon";
 
-export type Price = {
-  current: number;
-  previous?: number;
-  installments?: { count: number; value: number; interestFree: boolean };
-};
+export type HeroTheme = "petroleo" | "nevoa" | "vapor";
 
 export type Product = {
   slug: string;
   number: number;
   name: string;
   shortName: string;
-  model: string;
+  model?: string;
   category: string;
-  /** Frase curta usada em cards e no hub */
-  tagline: string;
-  headline: string;
-  subheadline: string;
-  seo: { title: string; description: string };
-  price?: Price;
-  /** Cole aqui o link do parceiro de venda. Enquanto for null, o botão mostra um aviso. */
-  checkoutUrl: string | null;
-  /** Foto real do produto (fundo transparente de preferência). Sem ela, usamos a ilustração. */
-  image?: { src: string; alt: string; width: number; height: number };
-  video?: { src: string; poster?: string };
-  highlights: string[];
-  benefits: { title: string; text: string; icon: IconName }[];
-  steps: { title: string; text: string }[];
-  comparison: { label: string; common: string; product: string }[];
-  videoNotes: string[];
-  specs: { label: string; value: string }[];
-  dimensions: { heightCm: number; widthCm: number; depthCm: number };
-  inBox: string[];
-  limitations: string[];
-  faq: { question: string; answer: string }[];
-};
 
-export type UpcomingDiscovery = {
-  number: number;
-  category: string;
-  note: string;
+  /** Pasta dentro de /public/produtos com as fotos reais. */
+  imageFolder: string;
+  /**
+   * Opcional: nome do arquivo (ex.: "foto-3.webp") para cada seção.
+   * Se ficar vazio, as fotos da pasta são distribuídas em ordem alfabética.
+   */
+  imageRoles?: { hero?: string; solution?: string; benefits?: string; summary?: string };
+  /** Texto alternativo base das fotos (descrição do produto). */
+  imageAlt: string;
+
+  /** Link de checkout da Kaiross (obrigatório). */
+  affiliateUrl: string;
+
+  youtubeId: string;
+  hub: { benefit: string };
+  seo: { title: string; description: string };
+  theme: HeroTheme;
+
+  hero: { headline: string; subheadline: string };
+  problem: { title: string; lead: string; pains: string[]; bridge: string };
+  solution: { title: string; paragraphs: string[] };
+  features: string[];
+  measures?: { label: string; value: string }[];
+  video: { title: string; lead: string };
+  benefits: { icon: IconName; title: string; text: string }[];
+  uses: { icon: IconName; title: string; text: string }[];
+  faq: { question: string; answer: string }[];
+  finalCta: { title: string; text: string };
 };
