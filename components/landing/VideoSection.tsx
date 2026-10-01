@@ -12,11 +12,11 @@ export default function VideoSection({ product }: { product: Product }) {
           <h2 id="video-titulo" className="section-title text-petroleo">{product.video.title}</h2>
           <p className="section-lead">{product.video.lead}</p>
           <div className="mt-8 hidden md:block">
-            <CtaButton href={product.affiliateUrl} productName={product.shortName} position="video" />
+            <CtaButton product={product} location="video" />
           </div>
         </div>
         <div className="min-w-0">
-          <YoutubeShort youtubeId={product.youtubeId} title={`${product.shortName} em uso`} />
+          <YoutubeShort product={product} title={`${product.shortName} em uso`} />
           <a
             href={shortUrl(product.youtubeId)}
             target="_blank"
@@ -29,7 +29,7 @@ export default function VideoSection({ product }: { product: Product }) {
           </a>
         </div>
         <div className="md:hidden">
-          <CtaButton href={product.affiliateUrl} productName={product.shortName} position="video" full />
+          <CtaButton product={product} location="video" full />
         </div>
       </div>
     </section>

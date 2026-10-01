@@ -63,7 +63,7 @@ export default async function LandingPage({ params }: Params) {
       <SummaryCta product={product} image={images.summary} />
       <FaqSection items={faq} />
       <FinalCta product={product} image={images.hero} />
-      <StickyCta href={product.affiliateUrl} productName={product.shortName} />
+      <StickyCta product={product} />
       <LandingJsonLd product={product} images={images.gallery} faq={faq} />
     </div>
   );

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Figtree } from "next/font/google";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
+import GoogleTag from "@/components/analytics/GoogleTag";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="conteudo">{children}</main>
         <Footer />
+        <GoogleTag />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       </body>
     </html>

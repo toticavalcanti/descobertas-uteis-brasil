@@ -16,6 +16,7 @@ export const products: Product[] = [
   // ─────────────────────────────────────────────── DESCOBERTA Nº 01
   {
     slug: "mini-mop-portatil",
+    analyticsId: "mini-mop",
     number: 1,
     name: "Mini Mop Portátil Retrátil com Auto-Torção",
     shortName: "Mini Mop Retrátil",
@@ -106,6 +107,7 @@ export const products: Product[] = [
   // ─────────────────────────────────────────────── DESCOBERTA Nº 02
   {
     slug: "mini-aspirador-automotivo-aj-s17",
+    analyticsId: "aj-s17",
     number: 2,
     name: "Mini Aspirador Automotivo Portátil AJ-S17",
     shortName: "Mini Aspirador AJ-S17",
@@ -197,6 +199,7 @@ export const products: Product[] = [
   // ─────────────────────────────────────────────── DESCOBERTA Nº 03
   {
     slug: "ferro-portatil-aj-120",
+    analyticsId: "aj-120",
     number: 3,
     name: "Ferro de Passar a Vapor Portátil AJ-120",
     shortName: "Ferro Portátil AJ-120",
@@ -307,12 +310,3 @@ export const commonFaq = [
 export const getProduct = (slug: string) => products.find((p) => p.slug === slug);
 export const productPath = (p: Pick<Product, "slug">) => `/descobertas/${p.slug}`;
 export const shortUrl = (youtubeId: string) => `https://www.youtube.com/shorts/${youtubeId}`;
-/**
- * Thumbnails oficiais do Short, da maior para a menor resolução.
- * O componente tenta em ordem e usa a primeira que existir.
- */
-export const thumbUrls = (youtubeId: string) => [
-  `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`, // 1280×720
-  `https://i.ytimg.com/vi/${youtubeId}/sddefault.jpg`, // 640×480
-  `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`, // 480×360 (último recurso)
-];

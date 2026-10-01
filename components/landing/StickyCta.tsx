@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { Product } from "@/lib/types";
 import CtaButton from "./CtaButton";
 
 /** Barra fixa no celular: aparece quando o CTA do topo sai da tela e some perto do CTA final. */
-export default function StickyCta({ href, productName }: { href: string; productName: string }) {
+export default function StickyCta({ product }: { product: Product }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -33,8 +34,8 @@ export default function StickyCta({ href, productName }: { href: string; product
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <div className="container-page flex items-center gap-3 py-3">
-        <p className="min-w-0 flex-1 truncate font-display text-[0.95rem] font-semibold text-petroleo">{productName}</p>
-        <CtaButton href={href} productName={productName} position="barra" label="Quero conhecer" size="md" noticePlacement="above" noticeAlign="right" />
+        <p className="min-w-0 flex-1 truncate font-display text-[0.95rem] font-semibold text-petroleo">{product.shortName}</p>
+        <CtaButton product={product} location="sticky" label="Quero conhecer" size="md" />
       </div>
     </div>
   );

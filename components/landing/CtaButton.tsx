@@ -1,26 +1,24 @@
+"use client";
+
 import Icon from "@/components/ui/Icon";
+import { productParams, track, type CtaLocation } from "@/lib/analytics";
+import type { Product } from "@/lib/types";
 
 type Props = {
-  /** Link de checkout da Kaiross (lib/products.ts → affiliateUrl) */
-  href: string;
-  productName: string;
-  /** Identifica o botão em ferramentas de análise (hero, video, resumo, final, barra) */
-  position: string;
+  /** O link vem sempre de product.affiliateUrl (lib/products.ts). */
+  product: Pick<Product, "analyticsId" | "name" | "shortName" | "slug" | "affiliateUrl">;
+  location: CtaLocation;
   label?: string;
   variant?: "primary" | "dark";
   size?: "md" | "lg";
   full?: boolean;
-  /** Mantidos por compatibilidade com as chamadas existentes; não têm mais efeito. */
-  noticePlacement?: "above" | "below";
-  noticeAlign?: "center" | "right";
   className?: string;
 };
 
-/** CTA de compra: abre o checkout da Kaiross em nova aba. */
+/** CTA de compra: abre o checkout da Kaiross em nova aba e registra um affiliate_click. */
 export default function CtaButton({
-  href,
-  productName,
-  position,
+  product,
+  location,
   label = "Quero conhecer o produto",
   variant = "primary",
   size = "lg",
@@ -40,13 +38,15 @@ export default function CtaButton({
   return (
     <div className={`relative ${full ? "w-full" : "inline-block max-w-full"} ${className}`}>
       <a
-        href={href}
+        href={product.affiliateUrl}
         target="_blank"
         rel="nofollow sponsored noopener noreferrer"
         className={classes}
         data-evento="clique-kaiross"
-        data-posicao={position}
-        aria-label={`${label}: ${productName} (abre o checkout da Kaiross em nova aba)`}
+        data-posicao={location}
+        aria-label={`${label}: ${product.shortName} (abre o checkout da Kaiross em nova aba)`}
+        // único ponto de disparo: um clique = um affiliate_click; o link abre normalmente
+        onClick={() => track("affiliate_click", { ...productParams(product), cta_location: location })}
       >
         <span>{label}</span>
         <Icon name="arrow" size={size === "lg" ? 20 : 16} strokeWidth={2.4} className="shrink-0 transition-transform duration-300 group-hover:translate-x-1" />

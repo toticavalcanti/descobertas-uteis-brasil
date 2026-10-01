@@ -14,7 +14,7 @@ export default function FinalCta({ product, image }: { product: Product; image: 
             </h2>
             <p className="mt-4 max-w-md text-lg text-tinta/75">{product.finalCta.text}</p>
             <div id="final-cta" className="mt-8">
-              <CtaButton href={product.affiliateUrl} productName={product.shortName} position="final" variant="dark" full className="sm:w-auto" />
+              <CtaButton product={product} location="final" variant="dark" full className="sm:w-auto" />
             </div>
           </div>
           <div className="mx-auto hidden w-full max-w-[18rem] md:block">

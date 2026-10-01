@@ -4,6 +4,8 @@ export type HeroTheme = "petroleo" | "nevoa" | "vapor";
 
 export type Product = {
   slug: string;
+  /** Identificador curto enviado como product_id nos eventos de analytics. */
+  analyticsId: string;
   number: number;
   name: string;
   shortName: string;

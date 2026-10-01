@@ -48,7 +48,7 @@ export default function SummaryCta({ product, image }: { product: Product; image
             )}
 
             <div className="mt-8">
-              <CtaButton href={product.affiliateUrl} productName={product.shortName} position="resumo" full className="sm:w-auto" />
+              <CtaButton product={product} location="summary" full className="sm:w-auto" />
               <p className="mt-4 text-sm text-vapor/70">Preço, pagamento e envio são informados na página da Kaiross.</p>
             </div>
           </div>

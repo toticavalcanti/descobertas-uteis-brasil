@@ -84,7 +84,7 @@ export default function LandingHero({ product, image }: { product: Product; imag
         {/* ação */}
         <div className="mt-7 min-w-0 md:col-start-1 md:row-start-2 md:mt-8 md:self-start">
           <div id="hero-cta" className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
-            <CtaButton href={product.affiliateUrl} productName={product.shortName} position="hero" full className="sm:w-auto" />
+            <CtaButton product={product} location="hero" full className="sm:w-auto" />
             <a
               href="#video"
               className={`group inline-flex min-h-[3rem] items-center justify-center gap-3 rounded-full px-2 text-[0.95rem] font-semibold transition-colors sm:justify-start ${t.muted}`}
