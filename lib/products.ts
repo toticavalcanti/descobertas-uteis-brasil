@@ -118,7 +118,7 @@ export const products: Product[] = [
 
     affiliateUrl: "https://pay.kaiross.com.br/e4glCxgH6YTG", // checkout Kaiross do Mini Aspirador AJ-S17
 
-    youtubeId: "ivX0A_QpuoM",
+    youtubeId: "O7ZnAvYWKe8",
     hub: { benefit: "Recarregável e sem fio, para limpezas rápidas no interior do carro." },
     seo: {
       title: "Mini Aspirador Automotivo Portátil AJ-S17",
@@ -210,7 +210,7 @@ export const products: Product[] = [
 
     affiliateUrl: "https://pay.kaiross.com.br/8kNZPPkTYJxb", // checkout Kaiross do Ferro AJ-120
 
-    youtubeId: "pWopIaUyiBk",
+    youtubeId: "7gRsGcXzVro",
     hub: { benefit: "Compacto e com vapor, para retoques rápidos nas roupas do dia a dia." },
     seo: {
       title: "Ferro de Passar a Vapor Portátil AJ-120",
