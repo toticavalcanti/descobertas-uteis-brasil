@@ -6,16 +6,17 @@ import { LogoMark } from "@/components/brand/Logo";
 /**
  * Thumbnail oficial do YouTube Short — implementação ÚNICA do projeto.
  *
- * Ordem de tentativa:
- *   1. oardefault.jpg     → formato original (vertical) do Short
- *   2. maxresdefault.jpg  → 1280×720
- *   3. sddefault.jpg      → 640×480
- *   4. hqdefault.jpg      → 480×360
+ * Usa a MINIATURA PERSONALIZADA definida no YouTube Studio, que o YouTube publica em:
+ *   1. maxresdefault.jpg  → 1280×720
+ *   2. sddefault.jpg      → 640×480
+ *   3. hqdefault.jpg      → 480×360 (sempre existe)
  *
- * As versões 2–4 são horizontais, geradas pelo YouTube com o quadro vertical centralizado
- * entre faixas pretas. Só são usadas se a vertical não existir.
+ * Não usamos oardefault.jpg: ele é um quadro automático do vídeo e ignora a miniatura personalizada.
+ *
+ * Essas versões são horizontais, com a miniatura vertical do Short centralizada entre faixas pretas.
+ * Na moldura 9:16, o recorte central remove apenas as faixas, sem deformar a imagem.
  */
-const SOURCES = ["oardefault", "maxresdefault", "sddefault", "hqdefault"] as const;
+const SOURCES = ["maxresdefault", "sddefault", "hqdefault"] as const;
 const shortThumbUrl = (id: string, kind: (typeof SOURCES)[number]) => `https://i.ytimg.com/vi/${id}/${kind}.jpg`;
 
 const FRAME_RATIO = 9 / 16;
