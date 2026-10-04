@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import GoogleTag from "@/components/analytics/GoogleTag";
 import PinterestTag from "@/components/analytics/PinterestTag";
 import MetaPixel from "@/components/analytics/MetaPixel";
+import TikTokPixel from "@/components/analytics/TikTokPixel";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <GoogleTag />
         <PinterestTag />
         <MetaPixel />
+        <TikTokPixel />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       </body>
     </html>
