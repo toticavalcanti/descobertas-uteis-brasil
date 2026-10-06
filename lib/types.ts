@@ -25,6 +25,8 @@ export type Product = {
    * O valor especial "@sem-animal" escolhe um arquivo cujo nome não cita cão/gato.
    */
   imageHints?: { hero?: string[]; solution?: string[]; benefits?: string[]; summary?: string[] };
+  /** Opcional: só as fotos cujo nome combina com este regex entram na galeria (padrão: todas da pasta). */
+  galleryFilter?: string;
   /** Texto alternativo base das fotos (descrição do produto). */
   imageAlt: string;
 

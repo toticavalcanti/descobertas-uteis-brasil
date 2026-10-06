@@ -7,7 +7,7 @@ import { productPath, products } from "@/lib/products";
 import { site } from "@/lib/site";
 
 const description =
-  "Descobertas Úteis Brasil mostra em vídeo produtos pequenos que resolvem o dia: Mini Mop Portátil Retrátil, Mini Aspirador Automotivo AJ-S17, Ferro de Passar a Vapor Portátil AJ-120 e Fonte Bebedouro Inox Flow para Pets.";
+  "Descobertas Úteis Brasil mostra em vídeo produtos pequenos que resolvem o dia: Fonte Bebedouro Inox Flow para Pets, Mini Mop Portátil Retrátil, Mini Aspirador Automotivo AJ-S17 e Ferro de Passar a Vapor Portátil AJ-120.";
 
 export const metadata: Metadata = {
   title: { absolute: `${site.name}: coisas pequenas que resolvem o dia` },

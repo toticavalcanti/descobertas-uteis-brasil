@@ -15,9 +15,131 @@ import type { Product } from "./types";
 export const products: Product[] = [
   // ─────────────────────────────────────────────── DESCOBERTA Nº 01
   {
+    slug: "fonte-bebedouro-pet-de-inox",
+    analyticsId: "fonte-inox-flow",
+    number: 1,
+    name: "Fonte Bebedouro Inox Flow para Pets",
+    shortName: "Fonte Inox Flow",
+    category: "Pets / Cães e Gatos",
+    imageFolder: "fonte-bebedouro-pet-de-inox",
+    imageAlt: "Fonte Bebedouro Inox Flow para Pets",
+    // Fotos da página: só as versões QUADRADAS ("..._quadrada.jpg"), escolhidas pelo nome do arquivo
+    // (comparação sem acentos e em minúsculas). A thumbnail do vídeo continua vindo do YouTube.
+    imageHints: {
+      hero: ["^golden retriever bebendo em fonte de agua.*quadrada"],
+      solution: ["^gatinho bebendo na fonte de aco.*quadrada"],
+      benefits: ["^cao bebendo em fonte de inox.*quadrada"],
+      summary: ["^gatos bebendo na fonte de aco.*quadrada"],
+    },
+    galleryFilter: "^(golden|cao|gat).*quadrada",
+
+    affiliateUrl: "https://pay.kaiross.com.br/Fc97Pfga3vzB", // checkout Kaiross da Fonte Inox Flow
+    price: 279.9,
+
+    youtubeId: "W6oMmnKNGrY",
+    hub: { benefit: "Água corrente, estrutura em inox e capacidade de 3,2 L para cães e gatos." },
+    seo: {
+      title: "Fonte Bebedouro Inox 3,2L para Cães e Gatos",
+      description:
+        "Conheça a Fonte Bebedouro Inox Flow para cães e gatos, com capacidade de 3,2 litros e fluxo contínuo de água. Veja fotos, vídeo e detalhes.",
+    },
+    theme: "petroleo",
+    hero: {
+      headline: "Água corrente para quem faz parte da família.",
+      subheadline: "Fonte em aço inox com capacidade de 3,2 litros e fluxo contínuo de água para cães e gatos.",
+    },
+    problem: {
+      title: "Água parada nem sempre chama a atenção.",
+      lead: "Muitos pets demonstram curiosidade por água em movimento. A Fonte Bebedouro Inox Flow mantém um fluxo contínuo, transformando a água em um ponto de interesse no ambiente.",
+      pains: [],
+      compare: {
+        common: { label: "Tigela comum", text: "Água parada, que muitas vezes passa despercebida." },
+        product: { label: "Fonte Inox Flow", text: "Água em movimento, com fluxo contínuo." },
+      },
+      bridge: "Um detalhe simples na rotina da casa.",
+    },
+    solution: {
+      title: "Conheça a Fonte Inox Flow.",
+      paragraphs: [
+        "Uma fonte bebedouro em aço inox, com capacidade de 3,2 litros e fluxo contínuo de água.",
+        "Ela funciona na tomada, é bivolt e pode ser usada por cães e gatos.",
+      ],
+    },
+    features: [
+      "100% inox",
+      "Capacidade de 3,2 litros",
+      "Fluxo contínuo de água",
+      "Funcionamento silencioso",
+      "Fácil de limpar",
+      "Para cães e gatos",
+    ],
+    specs: [
+      { label: "Material", value: "Aço inox" },
+      { label: "Capacidade", value: "3,2 litros" },
+      { label: "Uso", value: "Cães e gatos" },
+      { label: "Alimentação", value: "Bivolt" },
+      { label: "Tipo", value: "Fonte elétrica com fluxo contínuo de água" },
+      { label: "Cor", value: "Inox" },
+    ],
+    video: {
+      title: "Veja a fonte em uso.",
+      lead: "Assista ao vídeo e veja a água em movimento e os pets usando a fonte.",
+    },
+    inUse: {
+      title: "Para casas diferentes.",
+      lead: "Cães e gatos de portes e perfis diferentes usando a mesma fonte.",
+      items: [
+        { hints: ["^golden retriever.*quadrada"], caption: "Cães grandes" },
+        { hints: ["^cao bebe em fonte de aco na cozinha.*quadrada"], caption: "Cães de porte menor" },
+        { hints: ["^gatinho.*quadrada"], caption: "Gatinhos" },
+        { hints: ["^gato rag.*quadrada"], caption: "Gatos de pelo longo" },
+        { hints: ["^gatos bebendo.*quadrada"], caption: "Mais de um pet em casa" },
+        { hints: ["^cao bebendo em fonte de inox.*quadrada"], caption: "Na sala ou na cozinha" },
+      ],
+    },
+    benefits: [
+      { icon: "shield", title: "100% inox", text: "Construção em aço inox, resistente e fácil de integrar a diferentes ambientes da casa." },
+      { icon: "cup", title: "Capacidade de 3,2 litros", text: "Boa capacidade para o dia a dia, inclusive em casas com mais de um pet." },
+      { icon: "drop", title: "Água em movimento", text: "O fluxo contínuo cria uma experiência diferente da água parada em uma tigela comum." },
+      { icon: "quiet", title: "Funcionamento silencioso", text: "Bomba desenvolvida para trabalhar com baixo nível de ruído." },
+      { icon: "sparkle", title: "Fácil de limpar", text: "Estrutura pensada para facilitar a manutenção e a limpeza do recipiente." },
+      { icon: "paw", title: "Para cães e gatos", text: "Pode ser utilizada por pets de portes e perfis diferentes." },
+    ],
+    faq: [
+      { question: "Serve para cães e gatos?", answer: "Sim. A fonte foi desenvolvida para uso de pets e pode ser utilizada por cães e gatos." },
+      { question: "Qual é a capacidade?", answer: "A capacidade informada é de 3,2 litros." },
+      { question: "O recipiente é de inox?", answer: "Sim. O produto é anunciado como uma fonte 100% inox." },
+      { question: "A fonte precisa ficar ligada na tomada?", answer: "Sim. Ela utiliza uma bomba elétrica para manter o fluxo de água." },
+      { question: "É bivolt?", answer: "Sim, o produto é informado como bivolt." },
+      {
+        question: "Onde a compra é finalizada?",
+        answer:
+          "Após conhecer o produto no Descobertas Úteis Brasil, o botão de compra direciona você ao checkout da Kaiross.",
+      },
+    ],
+    omitCommonFaq: ["checkout"],
+    finalCta: {
+      title: "Água corrente para cães, gatos e casas cheias de companhia.",
+      text: "Conheça a Fonte Bebedouro Inox Flow e veja se ela faz sentido para a rotina dos seus pets.",
+    },
+    copy: {
+      heroCta: "Quero conhecer a fonte",
+      cta: "Quero a fonte para meu pet",
+      stickyCta: "Quero a fonte",
+      benefitsTitle: "Por que essa descoberta chamou nossa atenção?",
+      benefitsLead: "Os diferenciais da Fonte Inox Flow, sem exagero.",
+      galleryTitle: "Eles entenderam rapidinho.",
+      galleryLead: "Fotos reais da fonte. Toque em uma foto para ampliar.",
+      summaryTitle: "Fonte Bebedouro Inox Flow para Pets",
+      checkoutNote: "Compra finalizada com segurança na Kaiross.",
+    },
+  },
+
+  // ─────────────────────────────────────────────── DESCOBERTA Nº 02
+  {
     slug: "mini-mop-portatil",
     analyticsId: "mini-mop",
-    number: 1,
+    number: 2,
     name: "Mini Mop Portátil Retrátil com Auto-Torção",
     shortName: "Mini Mop Retrátil",
     category: "Limpeza da casa",
@@ -104,11 +226,11 @@ export const products: Product[] = [
     },
   },
 
-  // ─────────────────────────────────────────────── DESCOBERTA Nº 02
+  // ─────────────────────────────────────────────── DESCOBERTA Nº 03
   {
     slug: "mini-aspirador-automotivo-aj-s17",
     analyticsId: "aj-s17",
-    number: 2,
+    number: 3,
     name: "Mini Aspirador Automotivo Portátil AJ-S17",
     shortName: "Mini Aspirador AJ-S17",
     model: "AJ-S17",
@@ -196,11 +318,11 @@ export const products: Product[] = [
     },
   },
 
-  // ─────────────────────────────────────────────── DESCOBERTA Nº 03
+  // ─────────────────────────────────────────────── DESCOBERTA Nº 04
   {
     slug: "ferro-portatil-aj-120",
     analyticsId: "aj-120",
-    number: 3,
+    number: 4,
     name: "Ferro de Passar a Vapor Portátil AJ-120",
     shortName: "Ferro Portátil AJ-120",
     model: "AJ-120",
@@ -292,126 +414,6 @@ export const products: Product[] = [
     },
   },
 
-  // ─────────────────────────────────────────────── DESCOBERTA Nº 04
-  {
-    slug: "fonte-bebedouro-pet-de-inox",
-    analyticsId: "fonte-inox-flow",
-    number: 4,
-    name: "Fonte Bebedouro Inox Flow para Pets",
-    shortName: "Fonte Inox Flow",
-    category: "Pets / Cães e Gatos",
-    imageFolder: "fonte-bebedouro-pet-de-inox",
-    imageAlt: "Fonte Bebedouro Inox Flow para Pets",
-    // Fotos escolhidas pelas palavras do nome real dos arquivos (sem acentos, minúsculas).
-    // Para fixar um arquivo específico, use imageRoles: { hero: "nome-exato.png", ... }.
-    imageHints: {
-      hero: ["(cao|caes|cachorro).*gato", "gato.*(cao|caes|cachorro)", "golden"],
-      solution: ["@sem-animal"],
-      benefits: ["golden", "(cao|caes|cachorro)(?!.*gat)"],
-      summary: ["@sem-animal", "ragdoll", "gat"],
-    },
-
-    affiliateUrl: "https://pay.kaiross.com.br/Fc97Pfga3vzB", // checkout Kaiross da Fonte Inox Flow
-    price: 279.9,
-
-    youtubeId: "W6oMmnKNGrY",
-    hub: { benefit: "Água corrente, estrutura em inox e capacidade de 3,2 L para cães e gatos." },
-    seo: {
-      title: "Fonte Bebedouro Inox 3,2L para Cães e Gatos",
-      description:
-        "Conheça a Fonte Bebedouro Inox Flow para cães e gatos, com capacidade de 3,2 litros e fluxo contínuo de água. Veja fotos, vídeo e detalhes.",
-    },
-    theme: "petroleo",
-    hero: {
-      headline: "Água corrente para quem faz parte da família.",
-      subheadline: "Fonte em aço inox com capacidade de 3,2 litros e fluxo contínuo de água para cães e gatos.",
-    },
-    problem: {
-      title: "Água parada nem sempre chama a atenção.",
-      lead: "Muitos pets demonstram curiosidade por água em movimento. A Fonte Bebedouro Inox Flow mantém um fluxo contínuo, transformando a água em um ponto de interesse no ambiente.",
-      pains: [],
-      compare: {
-        common: { label: "Tigela comum", text: "Água parada, que muitas vezes passa despercebida." },
-        product: { label: "Fonte Inox Flow", text: "Água em movimento, com fluxo contínuo." },
-      },
-      bridge: "Um detalhe simples na rotina da casa.",
-    },
-    solution: {
-      title: "Conheça a Fonte Inox Flow.",
-      paragraphs: [
-        "Uma fonte bebedouro em aço inox, com capacidade de 3,2 litros e fluxo contínuo de água.",
-        "Ela funciona na tomada, é bivolt e pode ser usada por cães e gatos.",
-      ],
-    },
-    features: [
-      "100% inox",
-      "Capacidade de 3,2 litros",
-      "Fluxo contínuo de água",
-      "Funcionamento silencioso",
-      "Fácil de limpar",
-      "Para cães e gatos",
-    ],
-    specs: [
-      { label: "Material", value: "Aço inox" },
-      { label: "Capacidade", value: "3,2 litros" },
-      { label: "Uso", value: "Cães e gatos" },
-      { label: "Alimentação", value: "Bivolt" },
-      { label: "Tipo", value: "Fonte elétrica com fluxo contínuo de água" },
-      { label: "Cor", value: "Inox" },
-    ],
-    video: {
-      title: "Veja a fonte em uso.",
-      lead: "Assista ao vídeo e veja a água em movimento e os pets usando a fonte.",
-    },
-    inUse: {
-      title: "Para casas diferentes.",
-      lead: "Cães e gatos de portes e perfis diferentes usando a mesma fonte.",
-      items: [
-        { hints: ["golden"], caption: "Cães grandes" },
-        { hints: ["(cao|caes|cachorro)(?!.*gat)"], caption: "Cães de outras raças" },
-        { hints: ["gatinho"], caption: "Gatinhos" },
-        { hints: ["ragdoll"], caption: "Gatos de pelo longo" },
-        { hints: ["gatos"], caption: "Mais de um gato" },
-        { hints: ["(cao|caes|cachorro).*gato", "gato.*(cao|caes|cachorro)"], caption: "Cães e gatos juntos" },
-      ],
-    },
-    benefits: [
-      { icon: "shield", title: "100% inox", text: "Construção em aço inox, resistente e fácil de integrar a diferentes ambientes da casa." },
-      { icon: "cup", title: "Capacidade de 3,2 litros", text: "Boa capacidade para o dia a dia, inclusive em casas com mais de um pet." },
-      { icon: "drop", title: "Água em movimento", text: "O fluxo contínuo cria uma experiência diferente da água parada em uma tigela comum." },
-      { icon: "quiet", title: "Funcionamento silencioso", text: "Bomba desenvolvida para trabalhar com baixo nível de ruído." },
-      { icon: "sparkle", title: "Fácil de limpar", text: "Estrutura pensada para facilitar a manutenção e a limpeza do recipiente." },
-      { icon: "paw", title: "Para cães e gatos", text: "Pode ser utilizada por pets de portes e perfis diferentes." },
-    ],
-    faq: [
-      { question: "Serve para cães e gatos?", answer: "Sim. A fonte foi desenvolvida para uso de pets e pode ser utilizada por cães e gatos." },
-      { question: "Qual é a capacidade?", answer: "A capacidade informada é de 3,2 litros." },
-      { question: "O recipiente é de inox?", answer: "Sim. O produto é anunciado como uma fonte 100% inox." },
-      { question: "A fonte precisa ficar ligada na tomada?", answer: "Sim. Ela utiliza uma bomba elétrica para manter o fluxo de água." },
-      { question: "É bivolt?", answer: "Sim, o produto é informado como bivolt." },
-      {
-        question: "Onde a compra é finalizada?",
-        answer:
-          "Após conhecer o produto no Descobertas Úteis Brasil, o botão de compra direciona você ao checkout da Kaiross.",
-      },
-    ],
-    omitCommonFaq: ["checkout"],
-    finalCta: {
-      title: "Água corrente para cães, gatos e casas cheias de companhia.",
-      text: "Conheça a Fonte Bebedouro Inox Flow e veja se ela faz sentido para a rotina dos seus pets.",
-    },
-    copy: {
-      heroCta: "Quero conhecer a fonte",
-      cta: "Quero a fonte para meu pet",
-      stickyCta: "Quero a fonte",
-      benefitsTitle: "Por que essa descoberta chamou nossa atenção?",
-      benefitsLead: "Os diferenciais da Fonte Inox Flow, sem exagero.",
-      galleryTitle: "Eles entenderam rapidinho.",
-      galleryLead: "Fotos reais da fonte. Toque em uma foto para ampliar.",
-      summaryTitle: "Fonte Bebedouro Inox Flow para Pets",
-      checkoutNote: "Compra finalizada com segurança na Kaiross.",
-    },
-  },
 ];
 
 /** Perguntas comuns a todas as landing pages. */

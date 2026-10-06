@@ -124,8 +124,16 @@ export function getImageSet(product: Product): ImageSet {
   }
   for (const role of roles) {
     if (result[role]) continue;
-    const chosen = pickByHints(all, product.imageHints?.[role], used);
-    if (chosen) { result[role] = chosen; used.add(chosen.file); }
+    const hints = product.imageHints?.[role];
+    const chosen = pickByHints(all, hints, used);
+    if (chosen) { result[role] = chosen; used.add(chosen.file); continue; }
+    // produto que escolhe fotos por nome: se a foto não existir, o build para em vez de trocar sozinho
+    if (hints && all.length > 0) {
+      throw new Error(
+        `[imageHints] ${product.slug} → "${role}": nenhum arquivo combina com ${JSON.stringify(hints)} em public/produtos/${product.imageFolder}/\n` +
+          all.map((i) => "  - " + i.file).join("\n")
+      );
+    }
   }
   let cursor = 0;
   for (const role of roles) {
@@ -134,7 +142,8 @@ export function getImageSet(product: Product): ImageSet {
     result[role] = next;
     used.add(next.file);
   }
-  return { ...result, gallery: all };
+  const gallery = product.galleryFilter ? all.filter((i) => new RegExp(product.galleryFilter!).test(normalize(i.file))) : all;
+  return { ...result, gallery };
 }
 
 /** Fotos da seção "produto em uso": uma por item, sem repetir, na ordem definida no produto. */
