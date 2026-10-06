@@ -6,7 +6,7 @@ import type { Product } from "@/lib/types";
 
 type Props = {
   /** O link vem sempre de product.affiliateUrl (lib/products.ts). */
-  product: Pick<Product, "analyticsId" | "name" | "shortName" | "slug" | "affiliateUrl">;
+  product: Pick<Product, "analyticsId" | "name" | "shortName" | "slug" | "affiliateUrl" | "price">;
   location: CtaLocation;
   label?: string;
   variant?: "primary" | "dark";
@@ -19,12 +19,13 @@ type Props = {
 export default function CtaButton({
   product,
   location,
-  label = "Quero conhecer o produto",
+  label: labelProp,
   variant = "primary",
   size = "lg",
   full = false,
   className = "",
 }: Props) {
+  const label = labelProp || "Quero conhecer o produto";
   const skin =
     variant === "primary"
       ? "bg-ipe text-tinta shadow-[0_14px_30px_-14px_rgba(217,157,0,.9)] hover:bg-ipe-400"
@@ -46,7 +47,14 @@ export default function CtaButton({
         data-posicao={location}
         aria-label={`${label}: ${product.shortName} (abre o checkout da Kaiross em nova aba)`}
         // único ponto de disparo: um clique = um affiliate_click; o link abre normalmente
-        onClick={() => track("affiliate_click", { ...productParams(product), cta_location: location })}
+        onClick={() =>
+          track("affiliate_click", {
+            ...productParams(product),
+            cta_location: location,
+            destination: "kaiross",
+            ...(product.price !== undefined ? { price: product.price, value: product.price, currency: "BRL" } : {}),
+          })
+        }
       >
         <span>{label}</span>
         <Icon name="arrow" size={size === "lg" ? 20 : 16} strokeWidth={2.4} className="shrink-0 transition-transform duration-300 group-hover:translate-x-1" />

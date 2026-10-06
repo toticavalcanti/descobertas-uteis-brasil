@@ -21,7 +21,14 @@ type ProductParams = { product_id: string; product_name: string; product_slug: s
 
 type EventMap = {
   /** Clique para conhecer/comprar na Kaiross. É um clique, NÃO uma venda. */
-  affiliate_click: ProductParams & { cta_location: CtaLocation };
+  affiliate_click: ProductParams & {
+    cta_location: CtaLocation;
+    destination: "kaiross";
+    /** Só quando o produto tem preço confirmado. Valor do produto, não de uma venda. */
+    price?: number;
+    value?: number;
+    currency?: "BRL";
+  };
   /** Visitante iniciou o vídeo do produto. */
   video_start: ProductParams;
 };

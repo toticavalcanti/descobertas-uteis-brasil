@@ -1,3 +1,4 @@
+import { brl } from "@/lib/format";
 import type { ProductImage } from "@/lib/productImages";
 import type { Product } from "@/lib/types";
 import CtaButton from "./CtaButton";
@@ -13,8 +14,11 @@ export default function FinalCta({ product, image }: { product: Product; image: 
               {product.finalCta.title}
             </h2>
             <p className="mt-4 max-w-md text-lg text-tinta/75">{product.finalCta.text}</p>
+            {product.price !== undefined && (
+              <p className="mt-6 font-display text-4xl font-bold tracking-[-0.03em] sm:text-5xl">{brl(product.price)}</p>
+            )}
             <div id="final-cta" className="mt-8">
-              <CtaButton product={product} location="final" variant="dark" full className="sm:w-auto" />
+              <CtaButton product={product} location="final" label={product.copy?.cta} variant="dark" full className="sm:w-auto" />
             </div>
           </div>
           <div className="mx-auto hidden w-full max-w-[18rem] md:block">

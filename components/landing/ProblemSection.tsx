@@ -11,6 +11,19 @@ export default function ProblemSection({ product }: { product: Product }) {
         </div>
 
         <div className="min-w-0">
+          {problem.compare ? (
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="rounded-[20px] bg-white p-5 ring-1 ring-tinta/10 sm:p-6">
+                <p className="text-sm font-semibold text-tinta/55">{problem.compare.common.label}</p>
+                <p className="mt-2 font-display text-lg font-semibold leading-snug text-tinta/80">{problem.compare.common.text}</p>
+              </div>
+              <div className="rounded-[20px] bg-petroleo p-5 text-white sm:p-6">
+                <p className="text-sm font-semibold text-ipe">{problem.compare.product.label}</p>
+                <p className="mt-2 font-display text-lg font-semibold leading-snug">{problem.compare.product.text}</p>
+              </div>
+            </div>
+          ) : (
+          <>
           <p className="text-sm font-semibold text-tinta/55">Você se identifica?</p>
           <ul className="mt-4 space-y-3">
             {problem.pains.map((pain) => (
@@ -22,6 +35,8 @@ export default function ProblemSection({ product }: { product: Product }) {
               </li>
             ))}
           </ul>
+          </>
+          )}
           <p className="mt-8 font-display text-xl font-semibold text-petroleo sm:text-2xl">{problem.bridge}</p>
         </div>
       </div>

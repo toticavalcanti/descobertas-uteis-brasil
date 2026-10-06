@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import Icon from "@/components/ui/Icon";
 
-type Img = { src: string; width: number; height: number };
+type Img = { src: string; width: number; height: number; alt?: string };
 
 /** Galeria das fotos reais: carrossel no celular, grade no desktop, e ampliação ao tocar. */
 export default function Gallery({ images, alt }: { images: Img[]; alt: string }) {
@@ -43,7 +43,7 @@ export default function Gallery({ images, alt }: { images: Img[]; alt: string })
             >
               <Image
                 src={img.src}
-                alt={`${alt}, foto ${i + 1}`}
+                alt={img.alt ?? `${alt}, foto ${i + 1}`}
                 fill
                 sizes="(min-width: 1024px) 18rem, (min-width: 768px) 30vw, 72vw"
                 className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.03]"
@@ -71,7 +71,7 @@ export default function Gallery({ images, alt }: { images: Img[]; alt: string })
             </button>
           </div>
           <div className="relative min-h-0 flex-1" onClick={(e) => e.stopPropagation()}>
-            <Image src={current.src} alt={`${alt}, foto ${open + 1}`} fill sizes="100vw" className="object-contain px-3" />
+            <Image src={current.src} alt={current.alt ?? `${alt}, foto ${open + 1}`} fill sizes="100vw" className="object-contain px-3" />
           </div>
           {images.length > 1 && (
             <div className="flex justify-center gap-3 py-4" style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom))" }} onClick={(e) => e.stopPropagation()}>

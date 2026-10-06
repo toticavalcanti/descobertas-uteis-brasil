@@ -75,9 +75,41 @@ export type ImageSet = {
   gallery: ProductImage[];
 };
 
+/** Nome do arquivo normalizado para comparação: minúsculas e sem acentos. */
+const normalize = (file: string) =>
+  file.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+const ANIMAL = /(cao|caes|cachorro|dog|golden|gato|gatos|gatinho|filhote|ragdoll|cat|pet)/;
+
+/** Primeiro arquivo, ainda não usado, que combina com uma das dicas (na ordem das dicas). */
+function pickByHints(all: ProductImage[], hints: string[] | undefined, used: Set<string>): ProductImage | null {
+  if (!hints) return null;
+  for (const hint of hints) {
+    const test =
+      hint === "@sem-animal"
+        ? (img: ProductImage) => !ANIMAL.test(normalize(img.file))
+        : (img: ProductImage) => new RegExp(hint).test(normalize(img.file));
+    const found = all.find((img) => !used.has(img.file) && test(img));
+    if (found) return found;
+  }
+  return null;
+}
+
 /**
- * Distribui as fotos pelas seções. Usa `imageRoles` quando definido;
- * caso contrário, segue a ordem dos arquivos, evitando repetir enquanto houver fotos diferentes.
+ * Texto alternativo a partir do nome do arquivo, quando ele é descritivo
+ * (ex.: "Gato Ragdoll Bebendo na Fonte.png" → "Gato Ragdoll Bebendo na Fonte").
+ * Nomes automáticos (códigos, UUID) retornam null.
+ */
+export function altFromFile(file: string): string | null {
+  if (/\d{3,}/.test(file)) return null; // códigos (ex.: nomes do Mercado Livre) não são descritivos
+  const base = file.replace(/\.[a-z0-9]+$/i, "").replace(/[_-]+/g, " ").replace(/\s*\(\d+\)$/, "").trim();
+  const words = base.split(/\s+/).filter((w) => /^[\p{L}]{3,}$/u.test(w));
+  return words.length >= 3 ? base : null;
+}
+
+/**
+ * Distribui as fotos pelas seções: 1) `imageRoles` (nome exato); 2) `imageHints` (palavras do nome);
+ * 3) para os produtos que não definem nada disso, a ordem dos arquivos (comportamento original).
  */
 export function getImageSet(product: Product): ImageSet {
   const all = getProductImages(product.imageFolder);
@@ -90,6 +122,11 @@ export function getImageSet(product: Product): ImageSet {
     const chosen = byName(product.imageRoles?.[role]);
     if (chosen) { result[role] = chosen; used.add(chosen.file); }
   }
+  for (const role of roles) {
+    if (result[role]) continue;
+    const chosen = pickByHints(all, product.imageHints?.[role], used);
+    if (chosen) { result[role] = chosen; used.add(chosen.file); }
+  }
   let cursor = 0;
   for (const role of roles) {
     if (result[role] || all.length === 0) continue;
@@ -98,4 +135,17 @@ export function getImageSet(product: Product): ImageSet {
     used.add(next.file);
   }
   return { ...result, gallery: all };
+}
+
+/** Fotos da seção "produto em uso": uma por item, sem repetir, na ordem definida no produto. */
+export function getInUseImages(product: Product): { image: ProductImage; caption: string }[] {
+  if (!product.inUse) return [];
+  const all = getProductImages(product.imageFolder);
+  const used = new Set<string>();
+  const out: { image: ProductImage; caption: string }[] = [];
+  for (const item of product.inUse.items) {
+    const image = pickByHints(all, item.hints, used);
+    if (image) { used.add(image.file); out.push({ image, caption: item.caption }); }
+  }
+  return out;
 }

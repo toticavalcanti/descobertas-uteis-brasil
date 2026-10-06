@@ -2,6 +2,7 @@ import Icon from "@/components/ui/Icon";
 import type { Product } from "@/lib/types";
 
 export default function UsesSection({ product }: { product: Product }) {
+  if (!product.uses?.length) return null;
   return (
     <section aria-labelledby="usos-titulo" className="bg-nevoa py-16 sm:py-20 md:py-28">
       <div className="container-page">

@@ -35,7 +35,7 @@ export default function StickyCta({ product }: { product: Product }) {
     >
       <div className="container-page flex items-center gap-3 py-3">
         <p className="min-w-0 flex-1 truncate font-display text-[0.95rem] font-semibold text-petroleo">{product.shortName}</p>
-        <CtaButton product={product} location="sticky" label="Quero conhecer" size="md" />
+        <CtaButton product={product} location="sticky" label={product.copy?.stickyCta ?? "Quero conhecer"} size="md" />
       </div>
     </div>
   );

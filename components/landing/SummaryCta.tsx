@@ -1,4 +1,5 @@
 import Icon from "@/components/ui/Icon";
+import { brl } from "@/lib/format";
 import type { ProductImage } from "@/lib/productImages";
 import type { Product } from "@/lib/types";
 import CtaButton from "./CtaButton";
@@ -19,7 +20,7 @@ export default function SummaryCta({ product, image }: { product: Product; image
           </div>
           <div className="min-w-0 p-6 sm:p-8 md:p-12">
             <h2 id="resumo-titulo" className="font-display text-3xl font-bold leading-tight tracking-[-0.03em] sm:text-4xl">
-              O essencial sobre o {product.shortName}.
+              {product.copy?.summaryTitle ?? `O essencial sobre o ${product.shortName}.`}
             </h2>
             <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
               {product.features.map((f) => (
@@ -29,6 +30,23 @@ export default function SummaryCta({ product, image }: { product: Product; image
                 </li>
               ))}
             </ul>
+
+            {product.specs && (
+              <div className="mt-7">
+                <h3 className="flex items-center gap-2 font-display text-lg font-semibold">
+                  <Icon name="info" size={19} className="text-ipe" />
+                  Informações do produto
+                </h3>
+                <dl className="mt-3 divide-y divide-white/10 rounded-2xl bg-white/[.06]">
+                  {product.specs.map((m) => (
+                    <div key={m.label} className="flex items-start justify-between gap-4 px-4 py-3">
+                      <dt className="shrink-0 text-vapor/75">{m.label}</dt>
+                      <dd className="min-w-0 text-right font-semibold">{m.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            )}
 
             {product.measures && (
               <div className="mt-7">
@@ -48,8 +66,19 @@ export default function SummaryCta({ product, image }: { product: Product; image
             )}
 
             <div className="mt-8">
-              <CtaButton product={product} location="summary" full className="sm:w-auto" />
-              <p className="mt-4 text-sm text-vapor/70">Preço, pagamento e envio são informados na página da Kaiross.</p>
+              {product.price !== undefined && (
+                <p className="mb-5">
+                  <span className="block text-sm font-medium text-vapor/70">Preço</span>
+                  <span className="mt-1 block font-display text-[2.6rem] font-bold leading-none tracking-[-0.03em] text-white sm:text-5xl">
+                    {brl(product.price)}
+                  </span>
+                </p>
+              )}
+              <CtaButton product={product} location="summary" label={product.copy?.cta} full className="sm:w-auto" />
+              <p className="mt-4 flex items-center gap-2 text-sm text-vapor/70">
+                {product.copy?.checkoutNote && <Icon name="lock" size={15} className="shrink-0" />}
+                {product.copy?.checkoutNote ?? "Preço, pagamento e envio são informados na página da Kaiross."}
+              </p>
             </div>
           </div>
         </div>

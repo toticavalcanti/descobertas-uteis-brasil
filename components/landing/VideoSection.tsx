@@ -12,7 +12,7 @@ export default function VideoSection({ product }: { product: Product }) {
           <h2 id="video-titulo" className="section-title text-petroleo">{product.video.title}</h2>
           <p className="section-lead">{product.video.lead}</p>
           <div className="mt-8 hidden md:block">
-            <CtaButton product={product} location="video" />
+            <CtaButton product={product} location="video" label={product.copy?.cta} />
           </div>
         </div>
         <div className="min-w-0">
@@ -29,7 +29,7 @@ export default function VideoSection({ product }: { product: Product }) {
           </a>
         </div>
         <div className="md:hidden">
-          <CtaButton product={product} location="video" full />
+          <CtaButton product={product} location="video" label={product.copy?.cta} full />
         </div>
       </div>
     </section>

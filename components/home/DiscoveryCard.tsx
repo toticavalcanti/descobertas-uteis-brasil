@@ -38,7 +38,7 @@ export default function DiscoveryCard({ product, image, index }: { product: Prod
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col px-5 pb-5 pt-5 sm:px-6 sm:pb-6">
+      <div className="flex flex-1 flex-col px-5 pb-5 pt-5 sm:px-6 sm:pb-6 xl:px-5 xl:pb-5">
         <span
           className={`inline-flex items-center gap-2 self-start rounded-[8px] bg-ipe px-2.5 py-1 text-[0.7rem] font-bold uppercase tracking-[0.12em] text-tinta transition-transform duration-300 group-hover:rotate-0 ${tilts[index % tilts.length]}`}
         >
@@ -47,7 +47,7 @@ export default function DiscoveryCard({ product, image, index }: { product: Prod
         </span>
         <h3 className="mt-4 font-display text-[1.3rem] font-bold leading-tight tracking-[-0.025em] text-petroleo sm:text-[1.4rem]">{product.name}</h3>
         <p className="mt-2 flex-1 text-[1.02rem] leading-snug text-tinta/70">{product.hub.benefit}</p>
-        <span className="mt-6 flex items-center justify-between gap-3 rounded-full bg-petroleo px-5 py-3.5 text-[0.82rem] font-bold uppercase tracking-[0.1em] text-white transition-colors duration-300 group-hover:bg-ipe group-hover:text-tinta group-active:bg-ipe group-active:text-tinta">
+        <span className="mt-6 flex items-center justify-between gap-3 whitespace-nowrap rounded-full bg-petroleo px-5 py-3.5 text-[0.82rem] font-bold uppercase tracking-[0.1em] xl:px-4 xl:text-[0.78rem] xl:tracking-[0.06em] text-white transition-colors duration-300 group-hover:bg-ipe group-hover:text-tinta group-active:bg-ipe group-active:text-tinta">
           Ver a descoberta
           <Icon name="arrow" size={18} strokeWidth={2.4} className="shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
         </span>

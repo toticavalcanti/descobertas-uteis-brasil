@@ -9,8 +9,8 @@ export default function BenefitsSection({ product, image }: { product: Product; 
     <section aria-labelledby="beneficios-titulo" className="py-16 sm:py-20 md:py-28">
       <div className="container-page">
         <div className="max-w-2xl">
-          <h2 id="beneficios-titulo" className="section-title text-petroleo">Por que ele é útil.</h2>
-          <p className="section-lead">O que faz do {product.shortName} uma descoberta para a rotina.</p>
+          <h2 id="beneficios-titulo" className="section-title text-petroleo">{product.copy?.benefitsTitle ?? "Por que ele é útil."}</h2>
+          <p className="section-lead">{product.copy?.benefitsLead ?? `O que faz do ${product.shortName} uma descoberta para a rotina.`}</p>
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-10">

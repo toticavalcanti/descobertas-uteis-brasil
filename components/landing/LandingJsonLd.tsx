@@ -13,6 +13,9 @@ export default function LandingJsonLd({ product, images, faq }: { product: Produ
     url: `${site.url}${productPath(product)}`,
     ...(product.model ? { model: product.model, mpn: product.model } : {}),
     ...(images.length ? { image: images.slice(0, 6).map((i) => `${site.url}${i.src}`) } : {}),
+    ...(product.price !== undefined
+      ? { offers: { "@type": "Offer", price: product.price.toFixed(2), priceCurrency: "BRL", url: product.affiliateUrl } }
+      : {}),
   };
   const faqLd = {
     "@context": "https://schema.org",
