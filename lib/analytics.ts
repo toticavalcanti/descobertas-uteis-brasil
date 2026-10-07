@@ -2,9 +2,9 @@
  * =====================================================================
  *  ANALYTICS — ponto ÚNICO de envio de eventos do site.
  *
- *  Hoje: Google tag (GA4 + Google Ads), carregada em components/analytics/GoogleTag.tsx.
- *  Futuro: Meta Pixel / TikTok Pixel / GTM podem ser adicionados em `track()`
- *  sem mudar nenhum componente que já dispara eventos.
+ *  - Google tag (GA4 + Google Ads): todos os eventos.
+ *  - Meta Pixel: affiliate_click também é enviado como o evento padrão InitiateCheckout.
+ *  Novos destinos entram em `track()`, sem mudar os componentes que disparam eventos.
  *
  *  Privacidade: os eventos levam só dados de produto, página e CTA.
  *  Nunca envie nome, e-mail, telefone ou outro dado pessoal.
@@ -46,10 +46,21 @@ export function track<E extends keyof EventMap>(event: E, params: EventMap[E]) {
   try {
     // Google tag (GA4; o Google Ads pode importar o evento do GA4 como conversão)
     window.gtag?.("event", event, { ...params, transport_type: "beacon" });
-    // Pontos de extensão futuros, ex.: window.fbq?.("trackCustom", event, params)
+    // Meta Pixel: clique de saída para o checkout da Kaiross → InitiateCheckout (nunca Purchase)
+    if (event === "affiliate_click") sendMetaInitiateCheckout(params as EventMap["affiliate_click"]);
   } catch {
     /* analytics nunca pode quebrar a navegação */
   }
+}
+
+/** Evento padrão da Meta para o clique no checkout. value/currency só vão quando o produto tem preço configurado. */
+function sendMetaInitiateCheckout(p: EventMap["affiliate_click"]) {
+  window.fbq?.("track", "InitiateCheckout", {
+    content_name: p.product_name,
+    content_ids: [p.product_slug],
+    content_type: "product",
+    ...(p.price !== undefined ? { value: p.price, currency: "BRL" } : {}),
+  });
 }
 
 /** Parâmetros de produto padronizados para os eventos. */
